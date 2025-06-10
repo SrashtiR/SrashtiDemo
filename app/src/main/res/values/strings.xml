@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">SrashtiDemoApp</string>
+
+    <string name="current_value"> ₹%1$.2f</string>
+    <string name="total_investment"> ₹%1$.2f</string>
+    <string name="total_pnl"> ₹%1$.2f</string>
+    <string name="todays_pnl"> ₹%1$.2f</string>
+
+
 </resources>
