@@ -5,8 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.srashtidemoapp.R
+import com.example.srashtidemoapp.databinding.ItemHoldingBinding
 import com.example.srashtidemoapp.domain.model.Holding
 
 class HoldingsAdapter(
@@ -14,36 +16,36 @@ class HoldingsAdapter(
 ) : RecyclerView.Adapter<HoldingsAdapter.HoldingViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HoldingViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_holding, parent, false)
-        return HoldingViewHolder(view)
+        val binding = ItemHoldingBinding.inflate(
+            LayoutInflater.from(parent.context), parent, false
+        )
+        return HoldingViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: HoldingViewHolder, position: Int) {
-        val item = holdings[position]
-        holder.bind(item)
+        holder.bind(holdings[position])
     }
 
     override fun getItemCount(): Int = holdings.size
 
-    inner class HoldingViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-
-        private val symbolText: TextView = itemView.findViewById(R.id.symbolText)
-        private val quantityText: TextView = itemView.findViewById(R.id.quantityText)
-        private val ltpText: TextView = itemView.findViewById(R.id.ltpText)
-        private val pnlText: TextView = itemView.findViewById(R.id.pnlText)
+    inner class HoldingViewHolder(
+        private val binding: ItemHoldingBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: Holding) {
+            binding.item = item
+
             val investment = item.avgPrice * item.quantity
             val pnl = (item.ltp * item.quantity) - investment
 
-            symbolText.text = item.symbol
-            quantityText.text = "NET QTY: ${item.quantity}"
-            ltpText.text = "₹%.2f".format(item.ltp)
-            pnlText.text = "P&L: ₹%.2f".format(pnl)
+            val pnlText = binding.root.context.getString(R.string.pnl_format, pnl)
+            binding.pnlText.text = pnlText
 
-            // Apply green/red color based on P&L
-            pnlText.setTextColor(
-                if (pnl >= 0) Color.parseColor("#4CAF50") else Color.parseColor("#F44336")
+            binding.pnlText.setTextColor(
+                ContextCompat.getColor(
+                    binding.root.context,
+                    if (pnl >= 0) R.color.profitGreen else R.color.lossRed
+                )
             )
         }
     }

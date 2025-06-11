@@ -1,6 +1,6 @@
 package com.example.srashtidemoapp.data.api
 
-import com.example.srashtidemoapp.data.model.HoldingDto
+import com.example.srashtidemoapp.data.model.HoldingsResponse
 import retrofit2.http.GET
 
 interface HoldingsApi {

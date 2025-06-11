@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.srashtidemoapp.data.local.Constants
 import com.example.srashtidemoapp.domain.model.Holding
 import com.example.srashtidemoapp.domain.model.PortfolioSummary
 import com.example.srashtidemoapp.domain.repository.HoldingsRepository
@@ -39,14 +40,14 @@ class HoldingsViewModel @Inject constructor(
                 repository.getHoldings()
             }.onFailure {
                 it.printStackTrace()
-                _errorMessage.value = "Unable to fetch data from network. Showing offline data."
+                _errorMessage.value = Constants.UNABLE_TO_FETCH_TEXT
             }.getOrDefault(emptyList())
 
             if (holdingsList.isNotEmpty()) {
                 _holdings.value = holdingsList
                 _summary.value = calculatePortfolioUseCase.calculateSummary(holdingsList)
             } else {
-                _errorMessage.value = "No data available."
+                _errorMessage.value = Constants.NO_DATA_AVAILABLE_TEXT
             }
 
             _loading.value = false

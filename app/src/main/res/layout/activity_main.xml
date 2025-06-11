@@ -1,35 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
             name="viewModel"
             type="com.example.srashtidemoapp.presentation.viewmodel.HoldingsViewModel" />
     </data>
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F9F9F9">
+        android:background="@color/color_bg"
+        android:fitsSystemWindows="true">
 
-        <!-- Top App Bar -->
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
+            android:background="@color/toolbar_bg"
             android:title="@string/portfolio"
-            android:titleTextColor="@android:color/white"
-            android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
+            style="@style/CustomToolbar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:titleTextColor="@color/design_default_color_on_primary"
             app:layout_collapseMode="pin" />
 
-        <!-- Main Content -->
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="?attr/actionBarSize">
+            android:layout_height="0dp"
+            app:layout_constraintTop_toBottomOf="@+id/topAppBar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+           >
 
-            <!-- RecyclerView for Holdings -->
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
@@ -39,12 +45,11 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
-            <!-- Toggle Summary Text -->
             <LinearLayout
                 android:id="@+id/toggleSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#FFFFFF"
+                android:background="@color/white"
                 android:padding="16dp"
                 android:orientation="horizontal"
                 android:clickable="true"
@@ -53,29 +58,27 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
-                <!-- Left label -->
                 <TextView
                     android:id="@+id/summaryLabel"
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:text="@string/profit_amp_loss"
-                    android:textColor="#000000"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
-                <!-- Right value -->
                 <TextView
                     android:id="@+id/summaryTotalPnl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/_0_00"
-                    android:textColor="#F44336"
+                    tools:ignore="@string/_0_00"
+                    android:textColor="@color/lossRed"
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
-            <!-- Summary Card -->
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/summaryCard"
                 android:layout_width="match_parent"
@@ -86,7 +89,7 @@
                 android:visibility="gone"
                 app:cardCornerRadius="20dp"
                 app:cardElevation="8dp"
-                app:cardBackgroundColor="@android:color/white"
+                app:cardBackgroundColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
@@ -97,7 +100,6 @@
                     android:orientation="vertical"
                     android:padding="16dp">
 
-                    <!-- Current Value -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -108,8 +110,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="Current Value*"
-                            android:textColor="#000000"
+                            android:text="@string/current_value_text"
+                            android:textColor="@color/black"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -117,12 +119,12 @@
                             android:id="@+id/currentValueText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₹0.00"
-                            android:textColor="#000000"
+                            android:text="@string/_0_00"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
                     </LinearLayout>
 
-                    <!-- Total Investment -->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -133,8 +135,8 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="Total Investment*"
-                            android:textColor="#000000"
+                            android:text="@string/total_investment_text"
+                            android:textColor="@color/black"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -142,12 +144,12 @@
                             android:id="@+id/totalInvestmentText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₹0.00"
-                            android:textColor="#000000"
+                            tools:ignore="@string/_0_00"
+                            android:textColor="@color/black"
                             android:textSize="14sp" />
                     </LinearLayout>
 
-                    <!-- Today's P&L -->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -159,7 +161,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:text="@string/today_s_profit_amp_loss"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -167,12 +169,12 @@
                             android:id="@+id/todaysPNLText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₹0.00"
-                            android:textColor="#F44336"
+                            android:text="@string/_0_00"
+                            android:textColor="@color/lossRed"
                             android:textSize="14sp" />
                     </LinearLayout>
 
-                    <!-- Total P&L -->
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -183,7 +185,7 @@
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
                             android:text="@string/total_p_amp_l"
-                            android:textColor="#000000"
+                            android:textColor="@color/black"
                             android:textSize="14sp"
                             android:textStyle="bold" />
 
@@ -191,8 +193,8 @@
                             android:id="@+id/totalPNLText"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="₹0.00"
-                            android:textColor="#F44336"
+                            android:text="@string/_0_00"
+                            android:textColor="@color/lossRed"
                             android:textSize="14sp" />
                     </LinearLayout>
                 </LinearLayout>
@@ -213,5 +215,6 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

@@ -19,6 +19,7 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
 
         buildConfigField("String", "BASE_URL", "\"https://35dee773a9ec441e9f38d5fc249406ce.api.mockbin.io/\"")
+        buildConfigField("String", "HOLDINGS_DB_NAME", "\"holdings_db\"")
 
     }
 
@@ -85,7 +86,10 @@ dependencies {
     implementation(libs.room.ktx)
     kapt(libs.room.compiler)
 
-
+    testImplementation(libs.mockito)
+    testImplementation(libs.coroutines.test)
+    testImplementation(libs.core.testing)
+    testImplementation(kotlin("test"))
 
 
 }

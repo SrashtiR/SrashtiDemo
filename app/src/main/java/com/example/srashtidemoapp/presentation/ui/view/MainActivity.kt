@@ -5,6 +5,8 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.srashtidemoapp.R
@@ -28,6 +30,8 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
         binding.lifecycleOwner = this
 
+        binding.topAppBar.title = getString(R.string.portfolio)
+
         setupRecyclerView()
         setupSummaryToggle()
 
@@ -46,7 +50,7 @@ class MainActivity : AppCompatActivity() {
 
 
             val arrow = if (isSummaryVisible) "▲" else "▼"
-            binding.summaryLabel.text = "Profit & Loss $arrow"
+            binding.summaryLabel.text = getString(R.string.profit_loss, arrow)
         }
     }
 

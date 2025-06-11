@@ -18,6 +18,9 @@ activity = "1.8.0"
 constraintlayout = "2.1.4"
 javapoet = "1.13.0"
 room = "2.7.1"
+mockito = "5.2.0"
+coroutinesTest = "1.7.3"
+coreTesting = "2.2.0"
 
 
 [libraries]
@@ -52,6 +55,10 @@ androidx-constraintlayout = { group = "androidx.constraintlayout", name = "const
 room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+
+mockito = { group = "org.mockito", name = "mockito-core", version.ref = "mockito" }
+coroutines-test = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-test", version.ref = "coroutinesTest" }
+core-testing = { group = "androidx.arch.core", name = "core-testing", version.ref = "coreTesting" }
 
 
 [plugins]

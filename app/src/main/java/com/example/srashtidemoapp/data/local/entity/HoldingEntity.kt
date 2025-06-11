@@ -2,10 +2,11 @@ package com.example.srashtidemoapp.data.local.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.example.srashtidemoapp.data.local.Constants
 import com.example.srashtidemoapp.domain.model.Holding
 import javax.annotation.Nonnull
 
-@Entity(tableName = "holdings")
+@Entity(tableName = Constants.HOLDINGS_TABLE)
 data class HoldingEntity(
     @Nonnull
     @PrimaryKey val symbol: String,

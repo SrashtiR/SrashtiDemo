@@ -6,4 +6,11 @@
     <color name="profitGreen">#4CAF50</color>
     <color name="lossRed">#F44336</color>
 
+    <color name="dark_gray">#666666</color>
+    <color name="light_gray_bg">#DDDDDD</color>
+
+    <color name="color_bg">#F9F9F9</color>
+    <color name="toolbar_bg">#000080</color>
+
+
 </resources>

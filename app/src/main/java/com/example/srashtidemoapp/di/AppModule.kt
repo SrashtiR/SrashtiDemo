@@ -37,6 +37,7 @@ object AppModule {
         return retrofit.create(HoldingsApi::class.java)
     }
 
+    //todo
     @Provides
     @Singleton
     fun provideHoldingsRepository(api: HoldingsApi,dao: HoldingsDao): HoldingsRepository {
@@ -49,7 +50,7 @@ object AppModule {
         return Room.databaseBuilder(
             context,
             AppDatabase::class.java,
-            "holdings_db"
+            BuildConfig.HOLDINGS_DB_NAME
         ).build()
     }
 

@@ -20,6 +20,7 @@ class HoldingsRepositoryImpl @Inject constructor(
         return try {
             val response = api.getHoldings().data.userHolding
             val entities = response.map {
+
                 HoldingEntity(
                     symbol = it.symbol,
                     quantity = it.quantity,
@@ -29,19 +30,14 @@ class HoldingsRepositoryImpl @Inject constructor(
                 )
             }
 
-            Log.d("HoldingsRepo", "Saving ${entities.size} holdings to DB")
-
             dao.clearAll()
             dao.insertHoldings(entities)
 
-            Log.d("HoldingsRepo", "Returning fresh data from API")
-
             entities.map { it.toDomain() }
+
 
         } catch (e: Exception) {
             e.printStackTrace()
-
-            Log.d("HoldingsRepo", "Loading data from DB due to API failure")
 
             withContext(Dispatchers.IO) {
                 dao.getHoldings().map { it.toDomain() }
