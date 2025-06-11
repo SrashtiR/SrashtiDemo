@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">SrashtiDemoApp</string>
+
+    <string name="current_value"> ₹%1$.2f</string>
+    <string name="total_investment"> ₹%1$.2f</string>
+    <string name="total_pnl"> ₹%1$.2f</string>
+    <string name="todays_pnl"> ₹%1$.2f</string>
+    <string name="amount_format">₹%.2f</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="profit_amp_loss"><![CDATA[Profit & Loss ▼]]></string>
+    <string name="_0_00">₹0.00</string>
+    <string name="today_s_profit_amp_loss"><![CDATA[Today\'s Profit & Loss*]]></string>
+    <string name="total_p_amp_l"><![CDATA[Total P&L*]]></string>
+    <string name="profit_loss"><![CDATA[Profit & Loss %1$s]]></string>
+    <string name="total_investment_text">Total Investment*</string>
+    <string name="current_value_text">Current Value*</string>
+    <string name="pnl_format">P&amp;L: ₹%.2f</string>
+
+
 </resources>
