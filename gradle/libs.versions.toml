@@ -17,7 +17,7 @@ hilt = "2.51.1"
 activity = "1.8.0"
 constraintlayout = "2.1.4"
 javapoet = "1.13.0"
-room = "2.6.1"
+room = "2.7.1"
 
 
 [libraries]
@@ -49,9 +49,9 @@ javapoet = { group = "com.squareup", name = "javapoet", version.ref = "javapoet"
 androidx-activity-ktx = { group = "androidx.activity", name = "activity-ktx", version.ref = "activity" }
 androidx-constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
 
-#room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
-#room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
-#room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
+room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 
 
 [plugins]
