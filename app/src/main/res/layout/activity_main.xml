@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            android:title="Portfolio"
+            android:title="@string/portfolio"
             android:titleTextColor="@android:color/white"
             android:theme="@style/ThemeOverlay.MaterialComponents.Dark.ActionBar"
             app:layout_collapseMode="pin" />
@@ -40,22 +40,40 @@
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <!-- Toggle Summary Text -->
-            <TextView
+            <LinearLayout
                 android:id="@+id/toggleSummary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="#FFFFFF"
                 android:padding="16dp"
-                android:text="Profit &amp; Loss ▼"
-                android:textAlignment="center"
-                android:textColor="#000000"
-                android:textStyle="bold"
-                android:textSize="16sp"
+                android:orientation="horizontal"
                 android:clickable="true"
                 android:focusable="true"
                 app:layout_constraintBottom_toTopOf="@+id/summaryCard"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <!-- Left label -->
+                <TextView
+                    android:id="@+id/summaryLabel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:text="@string/profit_amp_loss"
+                    android:textColor="#000000"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <!-- Right value -->
+                <TextView
+                    android:id="@+id/summaryTotalPnl"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/_0_00"
+                    android:textColor="#F44336"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
 
             <!-- Summary Card -->
             <androidx.cardview.widget.CardView
@@ -140,7 +158,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="Today's Profit &amp; Loss*"
+                            android:text="@string/today_s_profit_amp_loss"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -164,7 +182,7 @@
                             android:layout_width="0dp"
                             android:layout_weight="1"
                             android:layout_height="wrap_content"
-                            android:text="Total P&amp;L*"
+                            android:text="@string/total_p_amp_l"
                             android:textColor="#000000"
                             android:textSize="14sp"
                             android:textStyle="bold" />
@@ -179,6 +197,18 @@
                     </LinearLayout>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginBottom="16dp"
+                android:indeterminate="true"
+                android:visibility="gone"
+                app:layout_constraintBottom_toTopOf="@+id/summaryCard"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
 

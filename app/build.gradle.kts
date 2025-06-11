@@ -17,10 +17,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "BASE_URL", "\"https://35dee773a9ec441e9f38d5fc249406ce.api.mockbin.io/\"")
+
     }
 
     buildFeatures {
         dataBinding = true
+        buildConfig = true
     }
 
     kapt {
@@ -77,9 +81,9 @@ dependencies {
 
     implementation(libs.javapoet)
 
-//    implementation(libs.room.runtime)
-//    implementation(libs.room.ktx)
-//    kapt(libs.room.compiler)
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    kapt(libs.room.compiler)
 
 
 

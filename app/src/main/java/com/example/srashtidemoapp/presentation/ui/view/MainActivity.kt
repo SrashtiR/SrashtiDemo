@@ -2,6 +2,7 @@ package com.example.srashtidemoapp.presentation.ui.view
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -42,7 +43,10 @@ class MainActivity : AppCompatActivity() {
         binding.toggleSummary.setOnClickListener {
             isSummaryVisible = !isSummaryVisible
             binding.summaryCard.visibility = if (isSummaryVisible) View.VISIBLE else View.GONE
-            binding.toggleSummary.text = if (isSummaryVisible) "Profit & Loss ▲" else "Profit & Loss ▼"
+
+
+            val arrow = if (isSummaryVisible) "▲" else "▼"
+            binding.summaryLabel.text = "Profit & Loss $arrow"
         }
     }
 
@@ -57,6 +61,26 @@ class MainActivity : AppCompatActivity() {
             binding.totalInvestmentText.text = getString(R.string.total_investment, summary.totalInvestment)
             binding.totalPNLText.text = getString(R.string.total_pnl, summary.totalPNL)
             binding.todaysPNLText.text = getString(R.string.todays_pnl, summary.todayPNL)
+
+            // Update summary bar total PNL (toggleSummary section)
+            binding.summaryTotalPnl.text = getString(R.string.amount_format, summary.totalPNL)
+
+            // Change color based on profit or loss
+            val colorRes = if (summary.totalPNL >= 0) R.color.profitGreen else R.color.lossRed
+            binding.summaryTotalPnl.setTextColor(resources.getColor(colorRes, theme))
+        }
+
+
+
+        viewModel.loading.observe(this) { isLoading ->
+            binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+
+        viewModel.errorMessage.observe(this) { msg ->
+            msg?.let {
+                Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

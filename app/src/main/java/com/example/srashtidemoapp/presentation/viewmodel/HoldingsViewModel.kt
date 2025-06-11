@@ -24,15 +24,32 @@ class HoldingsViewModel @Inject constructor(
     private val _summary = MutableLiveData<PortfolioSummary>()
     val summary: LiveData<PortfolioSummary> = _summary
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading: LiveData<Boolean> = _loading
+
+    private val _errorMessage = MutableLiveData<String?>()
+    val errorMessage: LiveData<String?> = _errorMessage
+
     fun fetchHoldings() {
         viewModelScope.launch {
-            try {
-                val holdingsList = repository.getHoldings()
+            _loading.value = true
+            _errorMessage.value = null
+
+            val holdingsList = runCatching {
+                repository.getHoldings()
+            }.onFailure {
+                it.printStackTrace()
+                _errorMessage.value = "Unable to fetch data from network. Showing offline data."
+            }.getOrDefault(emptyList())
+
+            if (holdingsList.isNotEmpty()) {
                 _holdings.value = holdingsList
                 _summary.value = calculatePortfolioUseCase.calculateSummary(holdingsList)
-            } catch (e: Exception) {
-                e.printStackTrace()
+            } else {
+                _errorMessage.value = "No data available."
             }
+
+            _loading.value = false
         }
     }
 }

@@ -5,6 +5,12 @@
     <string name="total_investment"> ₹%1$.2f</string>
     <string name="total_pnl"> ₹%1$.2f</string>
     <string name="todays_pnl"> ₹%1$.2f</string>
+    <string name="amount_format">₹%.2f</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="profit_amp_loss"><![CDATA[Profit & Loss ▼]]></string>
+    <string name="_0_00">₹0.00</string>
+    <string name="today_s_profit_amp_loss"><![CDATA[Today\'s Profit & Loss*]]></string>
+    <string name="total_p_amp_l"><![CDATA[Total P&L*]]></string>
 
 
 </resources>
